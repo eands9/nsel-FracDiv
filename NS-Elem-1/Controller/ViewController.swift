@@ -99,6 +99,7 @@ class ViewController: UIViewController {
         denCTxt.text = ""
         
         getSimplifiedAnswer()
+        numCTxt.becomeFirstResponder()
     }
     
     func checkAnswer(){
