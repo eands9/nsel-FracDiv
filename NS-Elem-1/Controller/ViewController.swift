@@ -33,9 +33,13 @@ class ViewController: UIViewController {
     var randomDenB : Int = 0
     
     var numA : Int = 0
+    var numAA : Int = 0
     var denA : Int = 0
+    var denAA : Int = 0
     var numB : Int = 0
+    var numBB : Int = 0
     var denB : Int = 0
+    var denBB : Int = 0
     var numC : Int = 0
     var denC : Int = 0
     
@@ -65,8 +69,6 @@ class ViewController: UIViewController {
         checkAnswer()
     }
     @IBAction func showBtn(_ sender: Any) {
-        print(numC)
-        print(denC)
         numCTxt.text = String(numC)
         denCTxt.text = String(denC)
         numberAttempts += 1
@@ -76,14 +78,27 @@ class ViewController: UIViewController {
     func askQuestion(){
         getAFraction()
         getBFraction()
-        getSimplifiedAnswer()
         
-        numALbl.text = String(numA)
-        denALbl.text = String(denA)
-        numBLbl.text = String(numB)
-        denBLbl.text = String(denB)
+        if (Double(numA)/Double(denA)) < (Double(numB)/Double(denB)){
+            numAA = numB
+            denAA = denB
+            numBB = numA
+            denBB = denA
+        }
+        else{
+            numAA = numA
+            denAA = denA
+            numBB = numB
+            denBB = denB
+        }
+        numALbl.text = String(numAA)
+        denALbl.text = String(denAA)
+        numBLbl.text = String(numBB)
+        denBLbl.text = String(denBB)
         numCTxt.text = ""
         denCTxt.text = ""
+        
+        getSimplifiedAnswer()
     }
     
     func checkAnswer(){
@@ -144,7 +159,7 @@ class ViewController: UIViewController {
         return (h, k)
     }
     func getSimplifiedAnswer(){
-        answerCorrect = (Double(numA)/Double(denA)) + (Double(numB)/Double(denB))
+        answerCorrect = (Double(numAA)/Double(denAA)) - (Double(numBB)/Double(denBB))
         let answerCorrectSimplify = simplifyFrac(x0: answerCorrect)
         numC = answerCorrectSimplify.num
         denC = answerCorrectSimplify.den
