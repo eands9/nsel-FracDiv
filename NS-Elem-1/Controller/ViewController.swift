@@ -143,7 +143,7 @@ class ViewController: UIViewController {
                 updateProgress()
             }
         }
-
+        numCTxt.becomeFirstResponder()
     }
     
     typealias Rational = (num : Int, den : Int)
@@ -160,7 +160,7 @@ class ViewController: UIViewController {
         return (h, k)
     }
     func getSimplifiedAnswer(){
-        answerCorrect = (Double(numAA)/Double(denAA)) - (Double(numBB)/Double(denBB))
+        answerCorrect = (Double(numAA)*Double(denBB)) / (Double(denAA)*Double(numBB))
         let answerCorrectSimplify = simplifyFrac(x0: answerCorrect)
         numC = answerCorrectSimplify.num
         denC = answerCorrectSimplify.den
